@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import UserBadge from './UserBadge'
 import SearchBar from './SearchBar'
+import RepoList from './RepoList'
 
 class Search extends Component {
   constructor () {
@@ -13,12 +14,19 @@ class Search extends Component {
     this.state = {
       url: 'https://api.github.com/users/',
       username: '',
-      userData: {}
+      userData: {
+        numFollowers: '',
+        numFollowing: '',
+        profileImage: '',
+        name: ''
+      },
+      repos: []
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.getUserNames = this.getUserNames.bind(this)
+    this.getRepos = this.getRepos.bind(this)
   }
 
   handleChange (event) {
@@ -42,6 +50,17 @@ class Search extends Component {
 
         this.setState({ userData })
       })
+
+    this.getRepos()
+  }
+
+  getRepos () {
+    const url = this.url + this.state.username + '/repos'
+    axios.get(url)
+      .then(response => {
+        const repos = response.data
+        this.setState({ repos })
+      })
   }
 
   render () {
@@ -57,6 +76,7 @@ class Search extends Component {
           name={this.state.userData.name}
           profileImage={this.state.userData.profileImage}
         />
+        <RepoList repos={this.state.repos} />
       </div>
     )
   }
