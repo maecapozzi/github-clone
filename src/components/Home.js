@@ -4,7 +4,7 @@ import UserBadge from './UserBadge'
 import SearchBar from './SearchBar'
 import RepoList from './RepoList'
 
-class Search extends Component {
+class Home extends Component {
   constructor () {
     super()
 
@@ -20,11 +20,12 @@ class Search extends Component {
         profileImage: '',
         name: ''
       },
-      repos: []
+      repos: [],
+      showData: false
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.getUserNames = this.getUserNames.bind(this)
     this.getRepos = this.getRepos.bind(this)
   }
@@ -33,8 +34,11 @@ class Search extends Component {
     this.setState({ username: event.target.value})
   }
 
-  handleClick (event) {
-    this.getUserNames()
+  handleSubmit (event) {
+    if (event.key === 'Enter') {
+      this.setState({ showData: true })
+      this.getUserNames()
+    }
   }
 
   getUserNames () {
@@ -47,11 +51,9 @@ class Search extends Component {
           profileImage: response.data.avatar_url,
           name: response.data.name
         }
-
         this.setState({ userData })
+        this.getRepos()
       })
-
-    this.getRepos()
   }
 
   getRepos () {
@@ -64,22 +66,35 @@ class Search extends Component {
   }
 
   render () {
-    return (
-      <div>
+    if (!this.state.showData) {
+      return (
         <SearchBar
           handleChange={this.handleChange.bind(this)}
-          handleClick={this.handleClick.bind(this)}
+          handleSubmit={this.handleSubmit.bind(this)}
         />
-        <UserBadge
-          numFollowers={this.state.userData.numFollowers}
-          numFollowing={this.state.userData.numFollowing}
-          name={this.state.userData.name}
-          profileImage={this.state.userData.profileImage}
-        />
-        <RepoList repos={this.state.repos} />
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div>
+          <SearchBar
+            handleChange={this.handleChange.bind(this)}
+            handleSubmit={this.handleSubmit.bind(this)}
+          />
+          <div className='modules__container'>
+            <div className='grid'>
+              <UserBadge
+                numFollowers={this.state.userData.numFollowers}
+                numFollowing={this.state.userData.numFollowing}
+                name={this.state.userData.name}
+                profileImage={this.state.userData.profileImage}
+            />
+              <RepoList repos={this.state.repos} />
+            </div>
+          </div>
+        </div>
+      )
+    }
   }
 }
 
-export default Search
+export default Home

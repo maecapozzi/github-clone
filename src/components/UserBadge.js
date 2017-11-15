@@ -1,12 +1,16 @@
 import React from 'react'
+import Card from 'material-ui/Card'
 
 const UserBadge = ({profileImage, name, numFollowers, numFollowing}) => (
-  <div>
-    <img src={profileImage} />
-    <p>Name: {name}</p>
-    <p>Number of Followers: {numFollowers}</p>
-    <p>Number of Following: {numFollowing}</p>
+  <div className='grid-item full'>
+    <Card className='card'>
+      <img className='image__profile' src={profileImage} />
+      <h1>{name}</h1>
+      <p>Followers: {numFollowers}</p>
+      <p>Following: {numFollowing}</p>
+    </Card>
   </div>
+
 )
 
 export default UserBadge
