@@ -68,10 +68,14 @@ class Home extends Component {
   render () {
     if (!this.state.showData) {
       return (
-        <SearchBar
-          handleChange={this.handleChange.bind(this)}
-          handleSubmit={this.handleSubmit.bind(this)}
-        />
+        <div>
+          <SearchBar
+            handleChange={this.handleChange.bind(this)}
+            handleSubmit={this.handleSubmit.bind(this)}
+          />
+
+          <h1 className='message'>Please search for a username in the Search Bar above.</h1>
+        </div>
       )
     } else {
       return (

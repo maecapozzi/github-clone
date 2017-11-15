@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from 'material-ui/Card'
+import PropTypes from 'prop-types'
 
 const Repo = ({repo}) => (
   <div className='grid-item thirds'>
@@ -15,5 +16,9 @@ const Repo = ({repo}) => (
     </Card>
   </div>
 )
+
+Repo.propTypes = {
+  repo: PropTypes.object
+}
 
 export default Repo

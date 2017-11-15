@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const SearchBar = ({handleChange, handleSubmit}) => (
   <div className='search-bar'>
@@ -10,5 +11,10 @@ const SearchBar = ({handleChange, handleSubmit}) => (
     />
   </div>
 )
+
+SearchBar.propTypes = {
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func
+}
 
 export default SearchBar

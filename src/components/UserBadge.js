@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from 'material-ui/Card'
+import PropTypes from 'prop-types'
 
 const UserBadge = ({profileImage, name, numFollowers, numFollowing}) => (
   <div className='grid-item full'>
@@ -10,7 +11,19 @@ const UserBadge = ({profileImage, name, numFollowers, numFollowing}) => (
       <p>Following: {numFollowing}</p>
     </Card>
   </div>
-
 )
+
+UserBadge.propTypes = {
+  profileImage: PropTypes.string,
+  name: PropTypes.string,
+  numFollowers: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  numFollowing: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
+}
 
 export default UserBadge
