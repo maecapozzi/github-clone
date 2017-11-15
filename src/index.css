@@ -22,10 +22,6 @@ body {
   margin-bottom: 10px;
 }
 
-.full { 
-  width: 100%;
-}
-
 .half { 
   width: 50%;
 }
@@ -67,6 +63,8 @@ body {
 .image__profile { 
   height: 200px;
   width: 200px;
+  float: left;
+  padding: 20px;
 }
 
 .message { 
