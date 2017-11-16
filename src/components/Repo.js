@@ -9,6 +9,7 @@ const Repo = ({repo}) => (
         <h2><a href={repo.url}>{repo.name}</a></h2>
         <h4>{repo.description}</h4>
         <a href={repo.git_url}>Git Url</a>
+        <p>Open Issues: {repo.open_issues}</p>
         <p>Stars: {repo.stargazers_count}</p>
         <p>Forks: {repo.forks}</p>
         <p>Size: {repo.size}</p>
