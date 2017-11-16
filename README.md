@@ -1,4 +1,4 @@
-To run this app: 
+#### To run this app: 
 
 Clone this repo
 
@@ -7,6 +7,10 @@ Clone this repo
 run `npm install` to install all dependencies
 
 run `npm start` to start the app
+
+
+
+#### Instructions
 
 1. Create a Search Component for the Github Username
 2. On Search, make an api call to Github API to fetch the information about the user
