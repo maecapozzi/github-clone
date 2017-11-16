@@ -1,3 +1,13 @@
+To run this app: 
+
+Clone this repo
+
+`cd` into the directory 
+
+run `npm install` to install all dependencies
+
+run `npm start` to start the app
+
 1. Create a Search Component for the Github Username
 2. On Search, make an api call to Github API to fetch the information about the user
   * API URL: https://api.github.com/users/{username}
