@@ -4,8 +4,10 @@ import UserBadge from './UserBadge'
 import SearchBar from './SearchBar'
 import RepoList from './RepoList'
 import { getData } from '../lib/apiService'
+import Message from './Message'
+import InitialLayout from './InitialLayout'
 
-class Home extends Component {
+class LayoutContainer extends Component {
   constructor () {
     super()
 
@@ -78,35 +80,24 @@ class Home extends Component {
   }
 
   showInitialLayout () {
-    return (
-      <div>
-        {this.getSearchBar()}
-        <h1 className='message'>Please search for a username in the Search Bar above.</h1>
-      </div>
-    )
+    const string = 'Please search for a username in the Search Bar above.'
+    return <InitialLayout string={string} />
   }
 
   showData () {
     return (
-      <div>
-        {this.getSearchBar()}
-        <div className='modules__container'>
-          <div className='grid'>
-            {this.getUserBadge()}
-            {this.getRepoList()}
-          </div>
+      <div className='modules__container'>
+        <div className='grid'>
+          {this.getUserBadge()}
+          {this.getRepoList()}
         </div>
       </div>
     )
   }
 
   renderErrors () {
-    return (
-      <div>
-        {this.getSearchBar()}
-        <h1 className='message'>Uh oh! An error has occured.</h1>
-      </div>
-    )
+    const string = 'Uh oh! An error has occured. Make sure that you have inputted a real username.'
+    return <Message string={string} />
   }
 
   getUserBadge () {
@@ -140,10 +131,18 @@ class Home extends Component {
   }
 
   render () {
-    if (!this.state.showData) return this.showInitialLayout()
-    if (this.state.errors) return this.renderErrors()
-    return this.showData()
+    return (
+      <div>
+        <SearchBar
+          handleChange={this.handleChange.bind(this)}
+          handleSubmit={this.handleSubmit.bind(this)}
+        />
+        {!this.state.showData && this.showInitialLayout()}
+        {this.state.errors && this.renderErrors()}
+        {this.state.showData && this.showData()}
+      </div>
+    )
   }
 }
 
-export default Home
+export default LayoutContainer

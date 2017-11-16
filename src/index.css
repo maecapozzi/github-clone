@@ -12,14 +12,19 @@ body {
 }
 
 .grid { 
+  display: -webkit-box; 
+  display: -ms-flexbox; 
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .grid-item { 
-  width: 400px;
   margin-bottom: 10px;
+  min-width: 400px;
 }
 
 .half { 
@@ -33,11 +38,17 @@ body {
 /****** Search Bar ******/ 
 
 .search-bar { 
-  align-items: center;
+  -webkit-box-align: center; 
+      -ms-flex-align: center; 
+          align-items: center;
   background-color: #24292F;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 51px;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
 }
 
@@ -61,10 +72,10 @@ body {
 }
 
 .image__profile { 
-  height: 200px;
-  width: 200px;
   float: left;
+  height: 200px;
   padding: 20px;
+  width: 200px;
 }
 
 .message { 
