@@ -6,8 +6,8 @@ const UserBadge = ({profileImage, name, numFollowers, numFollowing}) => (
   <div className='grid-item'>
     <img className='image__profile' src={profileImage} />
     <h1>{name}</h1>
-    <p>Followers: {numFollowers}</p>
-    <p>Following: {numFollowing}</p>
+    <p>{numFollowers} followers</p>
+    <p>{numFollowing} following</p>
   </div>
 )
 
